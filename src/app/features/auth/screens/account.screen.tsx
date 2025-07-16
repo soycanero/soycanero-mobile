@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { useAuthStore } from '../../../state/auth-store';
+import { Text, Button } from 'react-native-paper';
 
 export default function AccountScreen() {
   const setUser = useAuthStore(state => state.setUser);
@@ -12,7 +13,7 @@ export default function AccountScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Account Screen</Text>
-      <Button title="Sign Out" onPress={handleSignOut} />
+      <Button onPress={handleSignOut}>Sign Out</Button>
     </View>
   );
 }

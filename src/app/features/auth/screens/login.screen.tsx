@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { useAuthStore } from '../../../state/auth-store';
+import { Text, Button } from 'react-native-paper';
 
 export default function LoginScreen() {
   const setUser = useAuthStore(state => state.setUser);
@@ -14,7 +15,7 @@ export default function LoginScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Login Screen</Text>
-      <Button title="Sign In" onPress={handleSignIn} />
+      <Button onPress={handleSignIn}>Sign In</Button>
     </View>
   );
 }

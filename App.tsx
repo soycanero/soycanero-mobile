@@ -4,11 +4,11 @@
  *
  * @format
  */
-import React from 'react';
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import { getApp } from '@react-native-firebase/app';
+// import React from 'react';
+// import { NewAppScreen } from '@react-native/new-app-screen';
+// import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+// import firestore from '@react-native-firebase/firestore';
+// import { getApp } from '@react-native-firebase/app';
 
 function App() {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -29,18 +29,18 @@ function App() {
   //   // return () => subscriber();
   // }, []);
 
-  return (
-    // <View style={styles.container}>
-    //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-    //   <NewAppScreen templateFileName="App.tsx" />
-    // </View>
-  );
+  // return (
+  //   // <View style={styles.container}>
+  //   //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+  //   //   <NewAppScreen templateFileName="App.tsx" />
+  //   // </View>
+  // );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+// });
 
 export default App;
