@@ -11,29 +11,29 @@ import firestore from '@react-native-firebase/firestore';
 import { getApp } from '@react-native-firebase/app';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  // const isDarkMode = useColorScheme() === 'dark';
 
-  React.useEffect(() => {
-    firestore(getApp())
-      .collection('config')
-      .doc('hello')
-      .get()
-      .then(snapshot => {
-        console.log('"hello" collection: ', snapshot.data());
-      })
-      .catch(err => {
-        console.error(err);
-      });
+  // React.useEffect(() => {
+  //   firestore(getApp())
+  //     .collection('config')
+  //     .doc('hello')
+  //     .get()
+  //     .then(snapshot => {
+  //       console.log('"hello" collection: ', snapshot.data());
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     });
 
-    // Stop listening for updates when no longer required
-    // return () => subscriber();
-  }, []);
+  //   // Stop listening for updates when no longer required
+  //   // return () => subscriber();
+  // }, []);
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    // <View style={styles.container}>
+    //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    //   <NewAppScreen templateFileName="App.tsx" />
+    // </View>
   );
 }
 
