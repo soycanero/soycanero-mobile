@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "491542056712",
+    "project_id": "soy-canero-dev",
+    "storage_bucket": "soy-canero-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491542056712:android:3338f2b9751a644ef0a6bd",
+        "android_client_info": {
+          "package_name": "com.soycanero.appdev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMvCln67vw-MyyyrD0AVUSKR4p4aHz6Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services' 
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
@@ -79,7 +80,7 @@ android {
 
     namespace "com.soycaneroapp"
     defaultConfig {
-        applicationId "com.soycaneroapp"
+        applicationId "com.soycanero.appdev"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
