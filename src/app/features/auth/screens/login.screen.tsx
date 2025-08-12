@@ -4,12 +4,11 @@ import { useAuthStore } from '../../../state/auth-store';
 import { Text, Button } from 'react-native-paper';
 
 export default function LoginScreen() {
-  const setUser = useAuthStore(state => state.setUser);
+  const loginAction = useAuthStore(state => state.login);
+  // const loginAsAGuestAction = useAuthStore(state => state.loginAsAGuest);
 
   const handleSignIn = () => {
-    setUser({
-      name: 'Juan',
-    });
+    loginAction();
   };
 
   return (

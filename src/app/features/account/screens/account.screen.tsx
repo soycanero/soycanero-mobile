@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useAuthStore } from '../../../state/auth-store';
 import { Text, Button } from 'react-native-paper';
+import { useAuthStore } from '../../../state/auth-store';
 
 export default function AccountScreen() {
-  const setUser = useAuthStore(state => state.setUser);
+  const logoutAction = useAuthStore(state => state.logout);
 
   const handleSignOut = () => {
-    setUser(null);
+    logoutAction();
   };
 
   return (
