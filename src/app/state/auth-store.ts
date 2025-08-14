@@ -1,6 +1,12 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { create } from 'zustand';
 import { localStorageKeys } from '../constants/local-storage';
+import {
+  FirebaseAuthTypes,
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from '@react-native-firebase/auth';
 
 type AuthStatus =
   | 'unauthenticated'
@@ -11,23 +17,25 @@ type AuthStatus =
 
 interface AuthStore {
   authStatus: AuthStatus;
+  firebaseUser: FirebaseAuthTypes.User | null;
+  isInitialized: boolean;
   login: () => Promise<void>;
   loginAsAGuest: () => Promise<void>;
   verifyCode: () => Promise<void>;
   register: () => Promise<void>;
   logout: () => Promise<void>;
-  isInitialized: boolean;
   initialize: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthStore>(set => ({
   authStatus: 'unauthenticated',
+  firebaseUser: null,
   isInitialized: false,
 
   loginAsAGuest: async () => {
     const status: AuthStatus = 'guest';
     await EncryptedStorage.setItem(localStorageKeys.USER_TYPE, status);
-    set({ authStatus: status });
+    set({ authStatus: 'guest', firebaseUser: null });
   },
 
   login: async () => {
@@ -51,16 +59,35 @@ export const useAuthStore = create<AuthStore>(set => ({
   },
 
   logout: async () => {
-    const status: AuthStatus = 'unauthenticated';
-    await EncryptedStorage.setItem(localStorageKeys.USER_TYPE, status);
-    set({ authStatus: 'unauthenticated' });
+    const auth = getAuth();
+    await signOut(auth);
+    await EncryptedStorage.removeItem(localStorageKeys.USER_TYPE);
+    set({ authStatus: 'unauthenticated', firebaseUser: null });
   },
 
   initialize: async () => {
-    const type = await EncryptedStorage.getItem(localStorageKeys.USER_TYPE);
-    set({
-      authStatus: (type as AuthStatus) ?? 'unauthenticated',
-      isInitialized: true,
+    const storedType = await EncryptedStorage.getItem(
+      localStorageKeys.USER_TYPE,
+    );
+
+    const auth = getAuth();
+    // Escuchamos cambios de Firebase
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        set({
+          firebaseUser: user,
+          authStatus: 'authenticated',
+          isInitialized: true,
+        });
+      } else if (storedType === 'guest') {
+        set({ firebaseUser: null, authStatus: 'guest', isInitialized: true });
+      } else {
+        set({
+          firebaseUser: null,
+          authStatus: 'unauthenticated',
+          isInitialized: true,
+        });
+      }
     });
   },
 }));

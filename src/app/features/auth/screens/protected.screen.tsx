@@ -4,11 +4,11 @@ import { useAuthStore } from '../../../state/auth-store';
 import { useNavigation } from '@react-navigation/native';
 
 export default function ProtectedScreen(props: React.PropsWithChildren) {
-  const { user } = useAuthStore();
+  const { authStatus } = useAuthStore();
 
   const navigation = useNavigation<any>();
 
-  if (!user) {
+  if (authStatus !== 'authenticated') {
     return (
       <>
         <Text style={{ marginTop: 50, textAlign: 'center' }}>

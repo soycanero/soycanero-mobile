@@ -1,5 +1,4 @@
 import React from 'react';
-// import auth from '@react-native-firebase/auth';
 import { useAuthStore } from '../state/auth-store';
 import { View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
