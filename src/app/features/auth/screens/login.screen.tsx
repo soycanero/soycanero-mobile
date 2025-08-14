@@ -1,20 +1,55 @@
 import React from 'react';
-import { View } from 'react-native';
 import { useAuthStore } from '../../../state/auth-store';
-import { Text, Button } from 'react-native-paper';
+import { Text, Button, TextInput, ActivityIndicator } from 'react-native-paper';
+import { sendOtpFunction } from '../services/send-otp';
+import Layout from '../../shared/layout';
+import { useAppNavigation } from '../../../navigation/use-app-navigation';
 
 export default function LoginScreen() {
   const loginAction = useAuthStore(state => state.login);
-  // const loginAsAGuestAction = useAuthStore(state => state.loginAsAGuest);
+  const [email, setEmail] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const navigation = useAppNavigation();
 
-  const handleSignIn = () => {
-    loginAction();
+  const handleSignIn = async () => {
+    try {
+      setLoading(true);
+      const response = await sendOtpFunction({
+        email,
+      });
+      if (response.success) {
+        loginAction();
+        navigation.navigate('AuthStack', {
+          screen: 'CodeVerification',
+          params: { email },
+        });
+        // navigation.navigate('MainTabs', { screen: 'Home' });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Login Screen</Text>
-      <Button onPress={handleSignIn}>Sign In</Button>
-    </View>
+    <Layout mode="view" containerStyle={{ justifyContent: 'center', gap: 8 }}>
+      <Text
+        variant="titleLarge"
+        style={{ fontWeight: 'bold', textAlign: 'center' }}
+      >
+        Iniciar sesion
+      </Text>
+      <TextInput
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="email-address"
+      />
+      <Button mode="contained" onPress={handleSignIn}>
+        {loading ? <ActivityIndicator /> : 'Sign In'}
+      </Button>
+    </Layout>
   );
 }

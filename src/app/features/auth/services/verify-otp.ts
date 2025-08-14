@@ -12,10 +12,14 @@ export interface VerifyOTPResponse {
 export const verifyOtpFunction = async (dto: VerifyOTPDto) => {
   try {
     const functionsInstance = functions.getFunctions();
-    const response = await functions.httpsCallable<VerifyOTPDto, VerifyOTPResponse>(
+    const response = await functions.httpsCallable<
+      VerifyOTPDto,
+      VerifyOTPResponse
+    >(
       functionsInstance,
       'verifyOtp',
     )(dto);
+    console.log({ response });
     return response.data;
   } catch (error) {
     console.error(error);

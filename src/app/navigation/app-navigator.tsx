@@ -18,33 +18,13 @@ import AccountScreen from '../features/account/screens/account.screen';
 import StatsScreen from '../features/feed/screens/stats.screen';
 
 import { useAuthStore } from '../state/auth-store';
-
-
-// ===== Types =====
-type AuthStackParamList = {
-  Welcome: undefined;
-  Login: undefined;
-  CodeVerification: { email: string };
-  Register: { email: string };
-};
-
-type HomeStackParamList = {
-  Home: undefined;
-  Stats: undefined;
-};
-
-type ActivityStackParamList = {
-  Activity: undefined;
-};
-
-type AccountStackParamList = {
-  Account: undefined;
-};
-
-type RootStackParamList = {
-  AuthStack: undefined;
-  MainTabs: undefined;
-};
+import {
+  AccountStackParamList,
+  ActivityStackParamList,
+  HomeStackParamList,
+  AuthStackParamList,
+  RootStackParamList,
+} from './types';
 
 // ===== Stacks =====
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -135,7 +115,7 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {authStatus === 'unauthenticated' ? (
+        {!['guest', 'authenticated'].includes(authStatus) ? (
           <Stack.Screen name="AuthStack" component={AuthStackNavigator} />
         ) : (
           <Stack.Screen name="MainTabs" component={MainTabsNavigator} />
