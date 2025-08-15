@@ -15,7 +15,7 @@ import RegisterScreen from '../features/auth/screens/register.screen';
 import HomeScreen from '../features/feed/screens/home.screen';
 import ActivityScreen from '../features/activity/screens/activity.screen';
 import AccountScreen from '../features/account/screens/account.screen';
-import StatsScreen from '../features/feed/screens/stats.screen';
+import StatsScreen from '../features/stats/screens/stats.screen';
 
 import { useAuthStore } from '../state/auth-store';
 import {
