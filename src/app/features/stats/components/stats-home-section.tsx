@@ -1,4 +1,5 @@
-import { TouchableOpacity, View } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Text } from 'react-native-paper';
 import StatsSectionCard from './stats-section-card';
@@ -7,10 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function StatsHomeSection() {
   // const navigation = useAppNavigation();
-  const navigation = useNavigation<any>()
+  const navigation = useNavigation<any>();
 
   const handleGoSeeAll = () => {
-    navigation.navigate('Stats')
+    navigation.navigate('Stats');
     // navigation.navigate('MainTabs', {
     //   screen: 'HomeStack',
     //   params: {
@@ -25,6 +26,8 @@ export default function StatsHomeSection() {
           paddingHorizontal: 16,
           justifyContent: 'space-between',
           flexDirection: 'row',
+          borderWidth: 1,
+          borderColor: 'black',
         }}
       >
         <Text variant="titleMedium">Indicadores</Text>
@@ -32,12 +35,12 @@ export default function StatsHomeSection() {
           <Text variant="titleMedium">Ver todos</Text>
         </TouchableOpacity>
       </View>
-      <View
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
         style={{
-          paddingHorizontal: 16,
-          overflow: 'scroll',
+          marginHorizontal: 8,
           flexDirection: 'row',
-          gap: 8,
         }}
       >
         {/* Card */}
@@ -45,7 +48,7 @@ export default function StatsHomeSection() {
           <StatsSectionCard key={`stats-section-card-${cardId}`} />
         ))}
         {/* Card */}
-      </View>
+      </ScrollView>
     </View>
   );
 }

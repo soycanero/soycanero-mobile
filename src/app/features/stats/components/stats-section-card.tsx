@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { Dimensions, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Text } from 'react-native-paper';
@@ -20,11 +21,16 @@ export default function StatsSectionCard() {
   };
 
   return (
-    <TouchableOpacity onPress={handleGoToStat}>
+    <TouchableOpacity
+      onPress={handleGoToStat}
+      style={{
+        paddingHorizontal: 8,
+      }}
+    >
       <View
         style={{
           borderWidth: 1,
-          borderColor: '#000',
+          borderColor: 'black',
           height: 80,
           overflow: 'hidden',
           width,
