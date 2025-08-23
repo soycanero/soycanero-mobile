@@ -1,8 +1,11 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ActivityIndicator, View } from 'react-native';
+// ===== Icons =====
+import { House, Pulse, User } from 'phosphor-react-native';
 
 // ===== Screens =====
 // Onboarding
@@ -27,6 +30,7 @@ import {
 } from './types';
 import InfoModal from '../features/shared/components/info-modal';
 import ConversationScreen from '../features/chat/screens/conversation.screen';
+import { tabBarActiveColor, tabBarInactiveColor } from '../constants/theme';
 
 // ===== Stacks =====
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -82,21 +86,42 @@ function AccountStackNavigator() {
 
 function MainTabsNavigator() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={curr => ({
+        headerShown: false,
+        tabBarActiveTintColor: tabBarActiveColor,
+        tabBarInactiveTintColor: tabBarInactiveColor,
+        tabBarLabelStyle: {
+          fontWeight: curr.navigation.isFocused() ? '900' : '400',
+        },
+        tabBarIconStyle: {
+          fontWeight: curr.navigation.isFocused() ? '900' : '400',
+        },
+      })}
+    >
       <Tab.Screen
         name="HomeTab"
         component={HomeStackNavigator}
-        options={{ title: 'Home' }}
+        options={{
+          title: 'Home',
+          tabBarIcon: House,
+        }}
       />
       <Tab.Screen
         name="ActivityTab"
         component={ActivityStackNavigator}
-        options={{ title: 'Activity' }}
+        options={{
+          title: 'Activity',
+          tabBarIcon: Pulse,
+        }}
       />
       <Tab.Screen
         name="AccountTab"
         component={AccountStackNavigator}
-        options={{ title: 'Account' }}
+        options={{
+          title: 'Account',
+          tabBarIcon: User,
+        }}
       />
     </Tab.Navigator>
   );
