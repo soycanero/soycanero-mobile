@@ -34,7 +34,7 @@ export default function Layout(props: LayoutProps) {
   const Container = props.mode === 'scroll' ? ScrollView : View;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle={barStyle} />
       <KeyboardAvoidingView
         style={styles.keyboardAvoid}

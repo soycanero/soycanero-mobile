@@ -1,11 +1,21 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
+import Layout from '../../shared/layout';
+import ChatUsersList from '../../chat/components/chat-users-list';
 
 export default function ActivityScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Activity Screen</Text>
-    </View>
+    <Layout mode="view">
+      <View>
+        <Text
+          variant="displaySmall"
+          style={{ fontWeight: 'bold', paddingHorizontal: 16 }}
+        >
+          Activity Screen
+        </Text>
+        <ChatUsersList />
+      </View>
+    </Layout>
   );
 }

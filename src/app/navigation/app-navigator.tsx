@@ -25,6 +25,8 @@ import {
   AuthStackParamList,
   RootStackParamList,
 } from './types';
+import InfoModal from '../features/shared/components/info-modal';
+import ConversationScreen from '../features/chat/screens/conversation.screen';
 
 // ===== Stacks =====
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -62,6 +64,10 @@ function ActivityStackNavigator() {
   return (
     <ActivityStackNav.Navigator screenOptions={{ headerShown: false }}>
       <ActivityStackNav.Screen name="Activity" component={ActivityScreen} />
+      <ActivityStackNav.Screen
+        name="Conversation"
+        component={ConversationScreen}
+      />
     </ActivityStackNav.Navigator>
   );
 }
@@ -120,6 +126,16 @@ export default function AppNavigator() {
         ) : (
           <Stack.Screen name="MainTabs" component={MainTabsNavigator} />
         )}
+        <Stack.Screen
+          name="InfoModal"
+          component={InfoModal}
+          options={{
+            presentation: 'modal',
+            gestureEnabled: false,
+            animation: 'slide_from_bottom',
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

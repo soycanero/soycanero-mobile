@@ -10,6 +10,7 @@ export default function HomeScreen() {
 
   React.useEffect(() => {
     setBarStyle('dark-content');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

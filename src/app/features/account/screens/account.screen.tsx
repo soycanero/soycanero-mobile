@@ -1,8 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View } from 'react-native';
 import { Text, Button, ActivityIndicator } from 'react-native-paper';
 import { useAuthStore } from '../../../state/auth-store';
 import { getAuth, signOut } from '@react-native-firebase/auth';
+import Layout from '../../shared/layout';
 
 export default function AccountScreen() {
   const [loading, setLoading] = React.useState(false);
@@ -24,20 +26,22 @@ export default function AccountScreen() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 16,
-      }}
-    >
-      <Text variant="titleLarge">Account Screen</Text>
-      <Text>{firebaseUser?.email}</Text>
+    <Layout mode="scroll">
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 16,
+        }}
+      >
+        <Text variant="titleLarge">Account Screen</Text>
+        <Text>{firebaseUser?.email}</Text>
 
-      <Button mode="contained" onPress={handleSignOut} disabled={loading}>
-        {loading ? <ActivityIndicator color="#000" /> : 'Sign Out'}
-      </Button>
-    </View>
+        <Button mode="contained" onPress={handleSignOut} disabled={loading}>
+          {loading ? <ActivityIndicator color="#000" /> : 'Sign Out'}
+        </Button>
+      </View>
+    </Layout>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Platform, StyleSheet, TextInputProps, View } from 'react-native';
 import { ActivityIndicator, Button, Text } from 'react-native-paper';

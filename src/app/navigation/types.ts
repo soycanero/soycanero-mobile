@@ -9,6 +9,7 @@ export type HomeStackParamList = {
 
 export type ActivityStackParamList = {
   Activity: undefined;
+  Conversation: { conversationId: string };
 };
 
 export type AccountStackParamList = {
@@ -34,4 +35,5 @@ export type AuthStackParamList = {
 export type RootStackParamList = {
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
   MainTabs: NavigatorScreenParams<MainTabsParamList>;
+  InfoModal: undefined;
 };
