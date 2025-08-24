@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useModalStore } from '../../../state/modal-store';
+import { useModalStore } from '@/state/modal-store';
 import { ActivityIndicator, Button, Text } from 'react-native-paper';
 
 export default function InfoModal({ navigation }: any) {

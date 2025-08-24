@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
-import Layout from '../../shared/layout';
-import { useThemeStore } from '../../../state/theme-store';
-import StatsHomeSection from '../../stats/components/stats-home-section';
+import Layout from '@/features/shared/layout';
+import { useThemeStore } from '@/state/theme-store';
+import StatsHomeSection from '@/features/stats/components/stats-home-section';
 
 export default function HomeScreen() {
   const setBarStyle = useThemeStore(state => state.setBarStyle);

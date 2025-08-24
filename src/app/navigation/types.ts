@@ -10,6 +10,8 @@ export type HomeStackParamList = {
 export type ActivityStackParamList = {
   Activity: undefined;
   Conversation: { conversationId: string };
+  Conversations: undefined;
+  ChatUsers: undefined;
 };
 
 export type AccountStackParamList = {

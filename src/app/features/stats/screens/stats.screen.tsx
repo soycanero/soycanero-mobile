@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { Text } from 'react-native-paper';
 import { View } from 'react-native';
-import Layout from '../../shared/layout';
+import Layout from '@/features/shared/layout';
 import React from 'react';
 import StatsChart from '../components/stats-chart';
 

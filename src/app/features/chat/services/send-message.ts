@@ -6,8 +6,8 @@ import {
   Timestamp,
   updateDoc,
 } from '@react-native-firebase/firestore';
+import { collections } from '@/constants/collections';
 import { CreateMessageDto, MessageDoc } from '../types/message';
-import { collections } from '../../../constants/collections';
 
 export const sendMessage = async (
   conversationId: string,

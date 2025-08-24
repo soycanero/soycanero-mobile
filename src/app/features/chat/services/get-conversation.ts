@@ -1,10 +1,10 @@
-import { doc, getDoc, getFirestore } from '@react-native-firebase/firestore';
-import { collections } from '../../../constants/collections';
 import {
   Conversation,
   ConversationDoc,
   ConversationWithMessages,
 } from '../types/conversation';
+import { collections } from '@/constants/collections';
+import { doc, getDoc, getFirestore } from '@react-native-firebase/firestore';
 
 export const getConversation = async (
   conversationId: string,

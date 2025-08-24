@@ -1,23 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import { ScrollView, TouchableOpacity, View } from 'react-native';
-import React from 'react';
 import { Text } from 'react-native-paper';
-import StatsSectionCard from './stats-section-card';
-// import { useAppNavigation } from '../../../navigation/use-app-navigation';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import StatsSectionCard from './stats-section-card';
 
 export default function StatsHomeSection() {
-  // const navigation = useAppNavigation();
+
   const navigation = useNavigation<any>();
 
   const handleGoSeeAll = () => {
     navigation.navigate('Stats');
-    // navigation.navigate('MainTabs', {
-    //   screen: 'HomeStack',
-    //   params: {
-    //     screen: 'Stats',
-    //   },
-    // });
   };
   return (
     <View style={{ gap: 8 }}>

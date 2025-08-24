@@ -1,9 +1,8 @@
-import AppProvider from './app/providers/app-provider';
-// import { NavigationContainer } from '@react-navigation/native';
+import { customTheme } from '@/constants/theme';
 import { PaperProvider } from 'react-native-paper';
-import AppNavigator from './app/navigation/app-navigator';
+import AppNavigator from '@/navigation/app-navigator';
+import AppProvider from '@/providers/app-provider';
 import React from 'react';
-import { customTheme } from './app/constants/theme';
 
 export default function App() {
   return (

@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useLayoutEffect } from 'react';
-import { View } from 'react-native';
+import { screenHeight, screenWidth } from '@/constants/app';
 import { Text, Button } from 'react-native-paper';
-import { screenHeight, screenWidth } from '../../../constants/app';
+import { View } from 'react-native';
+import React, { useLayoutEffect } from 'react';
 
-import Layout from '../../shared/layout';
-import { useThemeStore } from '../../../state/theme-store';
+import Layout from '@/features/shared/layout';
+import { useThemeStore } from '@/state/theme-store';
 
 export default function WelcomeScreen({ navigation }: any) {
   const setBarStyle = useThemeStore(state => state.setBarStyle);

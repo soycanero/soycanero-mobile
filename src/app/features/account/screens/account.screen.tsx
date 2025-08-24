@@ -1,10 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { View } from 'react-native';
-import { Text, Button, ActivityIndicator } from 'react-native-paper';
-import { useAuthStore } from '../../../state/auth-store';
 import { getAuth, signOut } from '@react-native-firebase/auth';
-import Layout from '../../shared/layout';
+import { Text, Button, ActivityIndicator } from 'react-native-paper';
+import { useAuthStore } from '@/state/auth-store';
+import { View } from 'react-native';
+import Layout from '@/features/shared/layout';
+import React from 'react';
 
 export default function AccountScreen() {
   const [loading, setLoading] = React.useState(false);

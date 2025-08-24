@@ -1,5 +1,4 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useRef, useState } from 'react';
 import {
   FlatList,
   Keyboard,
@@ -11,17 +10,18 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useThemeStore } from '../../../state/theme-store';
-import { useChatStore } from '../../../state/chat-store';
-import { ActivityStackParamList } from '../../../navigation/types';
-import { RouteProp, useRoute } from '@react-navigation/native';
-import { Message } from '../types/message';
-import { useAuthStore } from '../../../state/auth-store';
+import { ActivityStackParamList } from '@/navigation/types';
 import { getConversation } from '../services/get-conversation';
-import { sendMessage } from '../services/send-message';
 import { listenConversationMessages } from '../services/listen-conversation-messages';
+import { Message } from '../types/message';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { sendMessage } from '../services/send-message';
 import { Text } from 'react-native-paper';
+import { useAuthStore } from '@/state/auth-store';
+import { useChatStore } from '@/state/chat-store';
+import { useThemeStore } from '@/state/theme-store';
+import React from 'react';
 
 type ConversationRouteProp = RouteProp<ActivityStackParamList, 'Conversation'>;
 
@@ -38,8 +38,8 @@ export default function ConversationScreen() {
   );
   const userId = useAuthStore(state => state.firebaseUser?.uid);
 
-  const [inputText, setInputText] = useState('');
-  const flatListRef = useRef<FlatList>(null);
+  const [inputText, setInputText] = React.useState('');
+  const flatListRef = React.useRef<FlatList>(null);
 
   const handleSend = async () => {
     if (!userId) {

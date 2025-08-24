@@ -10,7 +10,7 @@ import {
   ScrollViewProps,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useThemeStore } from '../../state/theme-store';
+import { useThemeStore } from '@/state/theme-store';
 
 interface LayoutWithScrollProps {
   mode: 'scroll';

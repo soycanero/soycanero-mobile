@@ -9,16 +9,16 @@ import { House, Pulse, User } from 'phosphor-react-native';
 
 // ===== Screens =====
 // Onboarding
-import WelcomeScreen from '../features/auth/screens/welcome.screen';
-import LoginScreen from '../features/auth/screens/login.screen';
-import CodeVerificationScreen from '../features/auth/screens/code-verification.screen';
-import RegisterScreen from '../features/auth/screens/register.screen';
+import WelcomeScreen from '@/features/auth/screens/welcome.screen';
+import LoginScreen from '@/features/auth/screens/login.screen';
+import CodeVerificationScreen from '@/features/auth/screens/code-verification.screen';
+import RegisterScreen from '@/features/auth/screens/register.screen';
 
 // Main
-import HomeScreen from '../features/feed/screens/home.screen';
-import ActivityScreen from '../features/activity/screens/activity.screen';
-import AccountScreen from '../features/account/screens/account.screen';
-import StatsScreen from '../features/stats/screens/stats.screen';
+import HomeScreen from '@/features/feed/screens/home.screen';
+import ActivityScreen from '@/features/activity/screens/activity.screen';
+import AccountScreen from '@/features/account/screens/account.screen';
+import StatsScreen from '@/features/stats/screens/stats.screen';
 
 import { useAuthStore } from '../state/auth-store';
 import {
@@ -28,9 +28,11 @@ import {
   AuthStackParamList,
   RootStackParamList,
 } from './types';
-import InfoModal from '../features/shared/components/info-modal';
-import ConversationScreen from '../features/chat/screens/conversation.screen';
+import InfoModal from '@/features/shared/components/info-modal';
+import ConversationScreen from '@/features/chat/screens/conversation.screen';
 import { tabBarActiveColor, tabBarInactiveColor } from '../constants/theme';
+import ConversationsScreen from '@/features/chat/screens/conversations.screen';
+import ChatUsersScreen from '@/features/chat/screens/chat-users.screen';
 
 // ===== Stacks =====
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -71,6 +73,14 @@ function ActivityStackNavigator() {
       <ActivityStackNav.Screen
         name="Conversation"
         component={ConversationScreen}
+      />
+      <ActivityStackNav.Screen
+        name="Conversations"
+        component={ConversationsScreen}
+      />
+      <ActivityStackNav.Screen
+        name="ChatUsers"
+        component={ChatUsersScreen}
       />
     </ActivityStackNav.Navigator>
   );

@@ -1,20 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { Platform, StyleSheet, TextInputProps, View } from 'react-native';
-import { ActivityIndicator, Button, Text } from 'react-native-paper';
-import Layout from '../../shared/layout';
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import { verifyOtpFunction } from '../services/verify-otp';
-import { useAuthStore } from '../../../state/auth-store';
+import { ActivityIndicator, Button, Text } from 'react-native-paper';
+import { AuthStackParamList } from '@/navigation/types';
+import { Platform, StyleSheet, TextInputProps, View } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { useAppNavigation } from '../../../navigation/use-app-navigation';
-import { AuthStackParamList } from '../../../navigation/types';
 import { signIn } from '../services/sign-in';
+import { useAppNavigation } from '@/navigation/use-app-navigation';
+import { useAuthStore } from '@/state/auth-store';
+import { verifyOtpFunction } from '../services/verify-otp';
+import Layout from '@/features/shared/layout';
+import React from 'react';
 
 const CELL_COUNT = 6;
 const autoComplete = Platform.select<TextInputProps['autoComplete']>({

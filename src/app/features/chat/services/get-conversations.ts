@@ -1,34 +1,33 @@
 import {
-  FirebaseFirestoreTypes,
-  getFirestore,
-  query,
   collection,
-  where,
-  limit,
+  FirebaseFirestoreTypes,
   getDocs,
+  getFirestore,
+  limit,
+  query,
   startAfter,
+  where,
 } from '@react-native-firebase/firestore';
 import { collections } from '@/constants/collections';
-import { User, UserDoc } from '@/features/shared/types/users';
+import { Conversation } from '../types/conversation';
 
-export const getChatUsers = async (
+export const getConversations = async (
   userId: string,
   limitSize = 10,
   lastDocSnapshot?: FirebaseFirestoreTypes.DocumentSnapshot,
 ) => {
   try {
     let q = query(
-      collection(getFirestore(), collections.users),
-      where('id', '!=', userId),
+      collection(getFirestore(), collections.conversations),
+      where('participants', 'array-contains', userId),
       limit(limitSize),
     );
 
-    // // Si hay un documento desde el cual continuar, aplicamos paginación
     if (lastDocSnapshot) {
       q = query(
-        collection(getFirestore(), collections.users),
-        where('id', '!=', userId),
+        collection(getFirestore(), collections.conversations),
         limit(limitSize),
+        where('participants', 'array-contains', userId),
         startAfter(lastDocSnapshot),
       );
     }
@@ -37,23 +36,20 @@ export const getChatUsers = async (
       q,
     );
 
-    const users = querySnapshot.docs.map(doc => userMap(doc.data() as UserDoc));
+    const conversations = querySnapshot.docs.map(
+      doc => doc.data() as Conversation,
+    );
 
     // Esto te sirve para la siguiente consulta (paginación)
     const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
 
     return {
-      users,
-      lastVisible, // úsalo para la siguiente llamada a `getChatUsers`
+      conversations,
+      lastVisible,
       hasMore: querySnapshot.size === limitSize,
     };
   } catch (error) {
-    console.error('Error getting paginated users:', error);
+    console.error('Error getting conversations:', error);
     throw error;
   }
 };
-
-const userMap = (user: UserDoc): User => ({
-  ...user,
-  createdAt: user.createdAt.toDate(),
-});

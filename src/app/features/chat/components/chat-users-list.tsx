@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
-import { View, FlatList, TouchableOpacity } from 'react-native';
 import { Button, Card, Text } from 'react-native-paper';
-import React from 'react';
-import { getChatUsers } from '../services/get-chat-users';
-import { User } from '../../shared/types/users';
-import { useAuthStore } from '../../../state/auth-store';
-import Svg, { Circle } from 'react-native-svg';
 import { findOrCreateConversation } from '../services/find-or-create-conversation';
+import { getChatUsers } from '../services/get-chat-users';
+import { useAuthStore } from '@/state/auth-store';
+import { User } from '@/features/shared/types/users';
+import { View, FlatList, TouchableOpacity } from 'react-native';
+import React from 'react';
+import Svg, { Circle } from 'react-native-svg';
 
 import { useNavigation } from '@react-navigation/native';
 

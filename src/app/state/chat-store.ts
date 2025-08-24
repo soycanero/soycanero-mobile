@@ -1,10 +1,10 @@
-import { create } from 'zustand';
-import { ChatUser } from '../features/chat/types/chat-user';
 import {
   Conversation,
   ConversationWithMessages,
-} from '../features/chat/types/conversation';
-import { Message } from '../features/chat/types/message';
+} from '@/features/chat/types/conversation';
+import { ChatUser } from '@/features/chat/types/chat-user';
+import { create } from 'zustand';
+import { Message } from '@/features/chat/types/message';
 
 interface ChatStore {
   chatUsers: ChatUser[];

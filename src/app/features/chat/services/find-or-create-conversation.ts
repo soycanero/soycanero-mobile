@@ -7,9 +7,9 @@ import {
   query,
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
-import { collections } from '../../../constants/collections';
-import { CreateConversationDto } from '../types/conversation';
+import { collections } from '@/constants/collections';
 import { createConversation } from './create-conversation';
+import { CreateConversationDto } from '../types/conversation';
 
 export const findOrCreateConversation = async (dto: CreateConversationDto) => {
   try {

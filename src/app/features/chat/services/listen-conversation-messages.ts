@@ -5,7 +5,7 @@ import {
   onSnapshot,
   query,
 } from '@react-native-firebase/firestore';
-import { collections } from '../../../constants/collections';
+import { collections } from '@/constants/collections';
 import { Message, MessageDoc } from '../types/message';
 
 export const listenConversationMessages = (
