@@ -20,3 +20,5 @@ export const welcomeData: WelcomeItem[] = [
     text: 'Beneficio 3',
   },
 ];
+
+export const lastWelcomeIndex = welcomeData.length - 1;

@@ -4,7 +4,7 @@ import { useThemeStore } from '@/state/theme-store';
 import { StyleSheet, View } from 'react-native';
 import Layout from '@/features/shared/layout';
 import React from 'react';
-import { welcomeData } from '@/constants/welcome';
+import { lastWelcomeIndex, welcomeData } from '@/constants/welcome';
 import Carousel, {
   CarouselHandle,
 } from '@/features/shared/components/carousel';
@@ -19,8 +19,8 @@ export default function WelcomeScreen({ navigation }: any) {
   const handlePressContinue = () => {
     if (!carouselRef.current) return;
 
-    const isLast = currentIndex === welcomeData.length - 1;
-    
+    const isLast = currentIndex === lastWelcomeIndex;
+
     if (!isLast) {
       carouselRef.current.goToIndex(currentIndex + 1);
     } else {
