@@ -1,9 +1,9 @@
-import React from 'react';
-import { useAuthStore } from '../../../state/auth-store';
-import { Text, Button, TextInput, ActivityIndicator } from 'react-native-paper';
 import { sendOtpFunction } from '../services/send-otp';
-import Layout from '../../shared/layout';
-import { useAppNavigation } from '../../../navigation/use-app-navigation';
+import { Text, Button, TextInput, ActivityIndicator } from 'react-native-paper';
+import { useAppNavigation } from '@/navigation/use-app-navigation';
+import { useAuthStore } from '@/state/auth-store';
+import Layout from '@/features/shared/layout';
+import React from 'react';
 
 export default function LoginScreen() {
   const loginAction = useAuthStore(state => state.login);

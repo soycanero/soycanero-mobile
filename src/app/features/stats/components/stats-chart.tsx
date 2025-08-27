@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import { View } from 'react-native';
-import React from 'react';
 import { CartesianChart, Line } from 'victory-native';
 import { useFont } from '@shopify/react-native-skia';
+import { View } from 'react-native';
+import React from 'react';
 
 const DATA = Array.from({ length: 31 }, (_, i) => ({
   day: i,

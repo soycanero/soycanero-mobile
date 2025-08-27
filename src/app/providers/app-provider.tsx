@@ -1,7 +1,7 @@
-import React from 'react';
-import { useAuthStore } from '../state/auth-store';
-import { View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
+import { useAuthStore } from '@/state/auth-store';
+import { View } from 'react-native';
+import React from 'react';
 
 export default function AppProvider(props: React.PropsWithChildren) {
   const { initialize, isInitialized } = useAuthStore();

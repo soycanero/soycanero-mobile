@@ -1,12 +1,12 @@
-import EncryptedStorage from 'react-native-encrypted-storage';
-import { create } from 'zustand';
-import { localStorageKeys } from '../constants/local-storage';
 import {
   FirebaseAuthTypes,
   getAuth,
   onAuthStateChanged,
   signOut,
 } from '@react-native-firebase/auth';
+import { create } from 'zustand';
+import { localStorageKeys } from '@/constants/local-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 type AuthStatus =
   | 'unauthenticated'

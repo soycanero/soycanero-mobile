@@ -1,5 +1,5 @@
-import { StatusBarStyle } from 'react-native';
 import { create } from 'zustand';
+import { StatusBarStyle } from 'react-native';
 
 interface ThemeStore {
   barStyle: StatusBarStyle;

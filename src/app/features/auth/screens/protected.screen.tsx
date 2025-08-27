@@ -1,7 +1,7 @@
-import React from 'react';
 import { Text, Button } from 'react-native-paper';
-import { useAuthStore } from '../../../state/auth-store';
+import { useAuthStore } from '@/state/auth-store';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 
 export default function ProtectedScreen(props: React.PropsWithChildren) {
   const { authStatus } = useAuthStore();

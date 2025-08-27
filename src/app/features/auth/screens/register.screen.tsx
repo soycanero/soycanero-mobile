@@ -1,7 +1,7 @@
-import React from 'react';
-import { View } from 'react-native';
 import { Text } from 'react-native-paper';
-import Layout from '../../shared/layout';
+import { View } from 'react-native';
+import Layout from '@/features/shared/layout';
+import React from 'react';
 
 export default function RegisterScreen() {
   return (

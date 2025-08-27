@@ -1,23 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import { Dimensions, TouchableOpacity, View } from 'react-native';
-import React from 'react';
 import { Text } from 'react-native-paper';
-// import { useAppNavigation } from '../../../navigation/use-app-navigation';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 
 export default function StatsSectionCard() {
   const width = Dimensions.get('screen').width * 0.65;
-  // const navigation = useAppNavigation();
   const navigation = useNavigation<any>();
 
   const handleGoToStat = () => {
     navigation.navigate('Stats');
-    // navigation.navigate('MainTabs', {
-    //   screen: 'HomeStack',
-    //   params: {
-    //     screen: 'Stats',
-    //   },
-    // });
   };
 
   return (

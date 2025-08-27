@@ -10,7 +10,7 @@ import {
   ScrollViewProps,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useThemeStore } from '../../state/theme-store';
+import { useThemeStore } from '@/state/theme-store';
 
 interface LayoutWithScrollProps {
   mode: 'scroll';
@@ -34,7 +34,7 @@ export default function Layout(props: LayoutProps) {
   const Container = props.mode === 'scroll' ? ScrollView : View;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle={barStyle} />
       <KeyboardAvoidingView
         style={styles.keyboardAvoid}
