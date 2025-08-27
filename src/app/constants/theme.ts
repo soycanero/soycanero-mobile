@@ -29,3 +29,20 @@ export const customTheme: ThemeProp = {
 
 export const tabBarActiveColor = secondaryColor;
 export const tabBarInactiveColor = darkGreyColor;
+
+export const globalStyles = {
+  iconSize: {
+    small: 16,
+    medium: 24,
+    large: 32,
+  },
+  spacing: {
+    xs: 4,
+    s: 8,
+    m: 16,
+    l: 24,
+    xl: 32,
+    xxl: 40,
+    xxxl: 48,
+  },
+};

@@ -1,110 +1,90 @@
 /* eslint-disable react-native/no-inline-styles */
-import { screenHeight, screenWidth } from '@/constants/app';
 import { Text, Button } from 'react-native-paper';
-import { View } from 'react-native';
-import React, { useLayoutEffect } from 'react';
-
-import Layout from '@/features/shared/layout';
 import { useThemeStore } from '@/state/theme-store';
+import { StyleSheet, View } from 'react-native';
+import Layout from '@/features/shared/layout';
+import React from 'react';
+import { welcomeData } from '@/constants/welcome';
+import Carousel, {
+  CarouselHandle,
+} from '@/features/shared/components/carousel';
+import { screenWidth } from '@/constants/app';
+import WelcomeCarouselItem from '../components/welcome-carousel-item';
 
 export default function WelcomeScreen({ navigation }: any) {
   const setBarStyle = useThemeStore(state => state.setBarStyle);
+  const carouselRef = React.useRef<CarouselHandle>(null);
+  const [currentIndex, setCurrentIndex] = React.useState<number>(0);
 
-  const handleGoToLogin = () => {
-    navigation.navigate('Login');
+  const handlePressContinue = () => {
+    if (!carouselRef.current) return;
+
+    const isLast = currentIndex === welcomeData.length - 1;
+    
+    if (!isLast) {
+      carouselRef.current.goToIndex(currentIndex + 1);
+    } else {
+      navigation.navigate('Login');
+    }
   };
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     setBarStyle('dark-content');
   });
 
   return (
-    <Layout mode="view" containerStyle={{ justifyContent: 'flex-end' }}>
-      <View>
-        {/* Title */}
-        <View
-          style={{
-            // borderWidth: 1,
-            width: '100%',
-            // flex: 1,
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-          }}
-        >
-          <Text variant="titleLarge" style={{ fontWeight: 'bold' }}>
-            Bienvenido a Soy Cañero
+    <Layout
+      mode="view"
+      withBottom
+      containerStyle={{ justifyContent: 'flex-end' }}
+    >
+      <View style={styles.titleContainer}>
+        <Text variant="titleLarge" style={styles.titleText}>
+          Bienvenido a Soy Cañero
+        </Text>
+      </View>
+      <Carousel
+        carouselRef={carouselRef}
+        data={welcomeData}
+        loop={false}
+        autoPlay={false}
+        width={screenWidth}
+        height={screenWidth * 0.7}
+        onSnapToItem={setCurrentIndex} // <- sincroniza aquí el estado externo
+        renderItem={item => (
+          <WelcomeCarouselItem
+            imageSource={{ uri: item.item.imageUrl }}
+            resizeMode="contain"
+            text={item.item.text}
+          />
+        )}
+      />
+      <View style={styles.buttonsContainer}>
+        <Button onPress={handlePressContinue} mode="contained">
+          <Text variant="titleMedium">
+            {currentIndex === welcomeData.length - 1 ? 'Empezar' : 'Siguiente'}
           </Text>
-        </View>
-        {/* Carousel */}
-        <View
-          style={{
-            // borderWidth: 1,
-            height: screenHeight * 0.5,
-            width: '100%',
-          }}
-        >
-          <View
-            style={{
-              paddingVertical: 16,
-              width: screenWidth,
-              aspectRatio: 3 / 2,
-            }}
-          >
-            <View
-              style={{
-                borderWidth: 1,
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text>Carousel</Text>
-            </View>
-          </View>
-          <View
-            style={{
-              borderWidth: 1,
-              width: '100%',
-              paddingHorizontal: 16,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 16,
-            }}
-          >
-            <View
-              style={{
-                width: 40,
-                height: 40,
-                backgroundColor: '#D9D9D9',
-                borderRadius: '100%',
-              }}
-            />
-            <Text variant="bodyLarge">
-              Beneficio de su perfil en soy cañero #1
-            </Text>
-          </View>
-        </View>
-        {/* Actions */}
-        <View
-          style={{
-            borderWidth: 1,
-            width: '100%',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 24,
-            // flex: 1,
-          }}
-        >
-          <Button onPress={handleGoToLogin} mode="contained">
-            <Text variant="titleMedium">Iniciar Sesión</Text>
-          </Button>
-          <Text variant="titleMedium">¿No tienes cuenta? Regístrate</Text>
-          {/* <Text variant="titleMedium">Ingresar como Invitado</Text> */}
-          <Button onPress={handleGoToLogin}>
-            <Text variant="titleMedium">Ingresar como Invitado</Text>
-          </Button>
-        </View>
+        </Button>
       </View>
     </Layout>
   );
 }
+
+const styles = StyleSheet.create({
+  layoutContainer: { justifyContent: 'flex-end' },
+  titleContainer: {
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  titleText: {
+    fontWeight: 'bold',
+  },
+  buttonsContainer: {
+    borderWidth: 1,
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: 24,
+  },
+});

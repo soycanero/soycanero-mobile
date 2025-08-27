@@ -19,6 +19,9 @@ interface AuthStore {
   authStatus: AuthStatus;
   firebaseUser: FirebaseAuthTypes.User | null;
   isInitialized: boolean;
+  // welcomeIndex: number;
+
+  // setWelcomeIndex: (index: number) => void;
   login: () => Promise<void>;
   loginAsAGuest: () => Promise<void>;
   verifyCode: () => Promise<void>;
@@ -31,6 +34,11 @@ export const useAuthStore = create<AuthStore>(set => ({
   authStatus: 'unauthenticated',
   firebaseUser: null,
   isInitialized: false,
+  welcomeIndex: 0,
+
+  // setWelcomeIndex: index => {
+  //   set({ welcomeIndex: index });
+  // },
 
   loginAsAGuest: async () => {
     const status: AuthStatus = 'guest';
