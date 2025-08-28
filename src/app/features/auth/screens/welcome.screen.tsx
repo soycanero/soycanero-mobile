@@ -8,8 +8,9 @@ import { lastWelcomeIndex, welcomeData } from '@/constants/welcome';
 import Carousel, {
   CarouselHandle,
 } from '@/features/shared/components/carousel';
-import { screenWidth } from '@/constants/app';
+import { screenHeight, screenWidth } from '@/constants/app';
 import WelcomeCarouselItem from '../components/welcome-carousel-item';
+import { globalStyles } from '@/constants/theme';
 
 export default function WelcomeScreen({ navigation }: any) {
   const setBarStyle = useThemeStore(state => state.setBarStyle);
@@ -28,6 +29,13 @@ export default function WelcomeScreen({ navigation }: any) {
     }
   };
 
+  const handlePressSkip = () => {
+    if (carouselRef.current) {
+      carouselRef.current.goToIndex(lastWelcomeIndex);
+    }
+    navigation.navigate('Login');
+  };
+
   React.useLayoutEffect(() => {
     setBarStyle('dark-content');
   });
@@ -43,27 +51,36 @@ export default function WelcomeScreen({ navigation }: any) {
           Bienvenido a Soy Cañero
         </Text>
       </View>
-      <Carousel
-        carouselRef={carouselRef}
-        data={welcomeData}
-        loop={false}
-        autoPlay={false}
-        width={screenWidth}
-        height={screenWidth * 0.7}
-        onSnapToItem={setCurrentIndex} // <- sincroniza aquí el estado externo
-        renderItem={item => (
-          <WelcomeCarouselItem
-            imageSource={{ uri: item.item.imageUrl }}
-            resizeMode="contain"
-            text={item.item.text}
-          />
-        )}
-      />
+      <View style={styles.carouselContainer}>
+        <Carousel
+          carouselRef={carouselRef}
+          data={welcomeData}
+          loop={false}
+          autoPlay={false}
+          width={screenWidth}
+          height={screenWidth * 0.7}
+          onSnapToItem={setCurrentIndex} // <- sincroniza aquí el estado externo
+          renderItem={item => (
+            <WelcomeCarouselItem
+              imageSource={{ uri: item.item.imageUrl }}
+              resizeMode="contain"
+              text={item.item.text}
+            />
+          )}
+        />
+      </View>
       <View style={styles.buttonsContainer}>
-        <Button onPress={handlePressContinue} mode="contained">
+        <Button
+          onPress={handlePressContinue}
+          mode="contained"
+          style={styles.button}
+        >
           <Text variant="titleMedium">
             {currentIndex === welcomeData.length - 1 ? 'Empezar' : 'Siguiente'}
           </Text>
+        </Button>
+        <Button onPress={handlePressSkip} mode="text">
+          <Text variant="titleMedium">Saltar</Text>
         </Button>
       </View>
     </Layout>
@@ -80,11 +97,17 @@ const styles = StyleSheet.create({
   titleText: {
     fontWeight: 'bold',
   },
+  carouselContainer: {
+    height: screenHeight * 0.5,
+    justifyContent: 'center',
+  },
   buttonsContainer: {
-    borderWidth: 1,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: 24,
+    gap: globalStyles.spacing.l,
+  },
+  button: {
+    width: screenWidth * 0.75,
   },
 });

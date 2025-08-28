@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     borderRadius: globalStyles.spacing.m,
   },
   textWrapper: {
-    height: 60,
-    justifyContent: 'flex-start',
+    height: 50,
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: globalStyles.spacing.m,
   },
